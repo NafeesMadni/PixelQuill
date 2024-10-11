@@ -36,7 +36,8 @@ btn_cols = {
 }
 
 def home(request):
-     profile = Profile.objects.get(user=request.user.id)
+     if not request.user.is_superuser:
+          profile = request.user.user_data
      
      categories = Category.objects.all()
      blogs = Blog.objects.all()
@@ -51,7 +52,7 @@ def home(request):
 
 
 def details(request, pk):
-     profile = Profile.objects.get(user=request.user.id)
+     # profile = Profile.objects.get(user=request.user.id)
      categories = Category.objects.all()
      blog = get_object_or_404(Blog, pk=pk)
      btn_col = btn_cols[str(blog.category)]
@@ -61,11 +62,11 @@ def details(request, pk):
           'blog': blog,
           'categories': categories,
           'btn_col': btn_col,
-          'profile': profile,
+          # 'profile': profile,
      })
 
 def category(request, pk):
-     profile = Profile.objects.get(user=request.user.id)
+     # profile = Profile.objects.get(user=request.user.id)
      
      categories = Category.objects.all()
      category = Category.objects.get(id=pk)
@@ -83,13 +84,13 @@ def category(request, pk):
           'btn_col':btn_col,
           'category': category,
           'image_url': image_url,
-          'profile': profile,
+          # 'profile': profile,
      })
 
 
 
 def author(request, pk):
-     profile = profile.objects.get(user=request.user.id)
+     # profile = profile.objects.get(user=request.user.id)
      categories = Category.objects.all()
      author = User.objects.get(id=pk)
      related_blogs = author.author_blogs.all()
@@ -100,7 +101,7 @@ def author(request, pk):
           'categories': categories, # pass to layout.html
           'btn_cols': btn_cols,
           'author': author,
-          'profile': profile,
+          # 'profile': profile,
      })
 
 

@@ -848,10 +848,6 @@ select {
   top: 0px;
 }
 
-.z-10 {
-  z-index: 10;
-}
-
 .z-50 {
   z-index: 50;
 }
@@ -1058,10 +1054,6 @@ select {
   height: 100vh;
 }
 
-.h-7 {
-  height: 1.75rem;
-}
-
 .w-1\/2 {
   width: 50%;
 }
@@ -1100,10 +1092,6 @@ select {
 
 .w-screen {
   width: 100vw;
-}
-
-.w-7 {
-  width: 1.75rem;
 }
 
 .max-w-2xl {
@@ -1234,10 +1222,6 @@ select {
 
 .text-wrap {
   text-wrap: wrap;
-}
-
-.rounded {
-  border-radius: 0.25rem;
 }
 
 .rounded-full {
@@ -1751,11 +1735,6 @@ select {
 .hover\:bg-red-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(185 28 28 / var(--tw-bg-opacity));
-}
-
-.hover\:text-gray-950:hover {
-  --tw-text-opacity: 1;
-  color: rgb(3 7 18 / var(--tw-text-opacity));
 }
 
 .hover\:text-green-600:hover {
