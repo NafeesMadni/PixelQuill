@@ -41,13 +41,13 @@
 	</div>
 	<div class="hidden lg:flex lg:flex-1 lg:justify-end gap-4">
 	{% if request.user.is_authenticated %}
-		<button class=""> 
-		<div class="flex space-x-6 justify-center">
-			<div class="flex-shrink-0 w-12 h-12 rounded-full overflow-hidden">
-			{% comment %} <img src="{{ profile.profile_img }}" /> {% endcomment %}
+		{% comment %} <button class=""> 
+			<div class="flex space-x-6 justify-center">
+				<div class="flex-shrink-0 w-12 h-12 rounded-full overflow-hidden">
+					{% comment %} <img src="{{ profile.profile_img }}" /> {% endcomment %}
+				</div>
 			</div>
-		</div>
-		</button>
+		</button> {% endcomment %}
 		<div class="hidden relative z-10" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
 		
 		<div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
