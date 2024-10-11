@@ -3,7 +3,7 @@ from .models import Blog, Category
 from django.utils import timezone
 from django.templatetags.static import static
 from django.contrib.auth.models import User
-
+from authentication.models import Profile
 
 btn_text_cols = {
      "Fashion": " bg-rose-100/95 text-rose-500 ",
@@ -38,12 +38,18 @@ btn_cols = {
 def home(request):
      categories = Category.objects.all()
      blogs = Blog.objects.all()
+     # profile = Profile.objects.get(fk=request.user.id)
+     for profile in Profile.objects.all():
+          
+          print(profile.pk)
      
+     # profile = get_object_or_404(Profile, )
      return render(request, 'core/home.html', 
      {
           'blogs': blogs, 
           'categories': categories, 
           'btn_cols': btn_cols,
+          'profile': Profile,
      }) # indirectly passing the list of category to layout.html
 
 
@@ -58,6 +64,7 @@ def details(request, pk):
           'blog': blog,
           'categories': categories,
           'btn_col': btn_col,
+          'profile': Profile,
      })
 
 def category(request, pk):
@@ -78,6 +85,7 @@ def category(request, pk):
           'btn_col':btn_col,
           'category': category,
           'image_url': image_url,
+          'profile': Profile,
      })
 
 
@@ -93,6 +101,7 @@ def author(request, pk):
           'categories': categories, # pass to layout.html
           'btn_cols': btn_cols,
           'author': author,
+          'profile': Profile,
      })
 
 

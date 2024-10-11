@@ -11,19 +11,19 @@
     {% tailwind_css %}
   </head>
   <body class="font-inter">
-    <header class="bg-white border border-b-gray-400 text-gray-900 mb-3">
+    <header class=" bg-white border border-b-gray-400 text-gray-900 mb-3">
       <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 lg:px-8 " aria-label="Global">
         <div class="flex lg:flex-1">
           <a href="{% url 'home' %}" class="-m-1.5 p-1.5">
             <span class="sr-only">Company Logo</span>
             <div class="sr-only">
-              <span class="bg-rose-500">Company Logo</span>
-              <span class="bg-cyan-500">Company Logo</span>
-              <span class="bg-yellow-500">Company Logo</span>
-              <span class="bg-teal-500">Company Logo</span>
-              <span class="bg-indigo-500">Company Logo</span>
-              <span class="bg-green-500">Company Logo</span>
-              <span class="bg-blue-500">Company Logo</span>
+              <span class="bg-rose-500">default color</span>
+              <span class="bg-cyan-500">default color</span>
+              <span class="bg-yellow-500">default color</span>
+              <span class="bg-teal-500">default color</span>
+              <span class="bg-indigo-500">default color</span>
+              <span class="bg-green-500">default color</span>
+              <span class="bg-blue-500">default color</span>
             </div>
             <h3 class="inline-block font-serif text-2xl font-thin text-gray-800">Pixel <span class="font-semibold">Quill</span></h3>
           </a>
@@ -41,6 +41,42 @@
         </div>
         <div class="hidden lg:flex lg:flex-1 lg:justify-end gap-4">
         {% if request.user.is_authenticated %}
+            <div class="hidden relative z-10" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+              
+              <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+              <div class="fixed inset-0 overflow-hidden">
+
+                <div class="absolute inset-0 overflow-hidden">
+                  
+                  <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+                    
+                    <div class="pointer-events-auto relative w-screen max-w-md">
+                    
+                      <div class="absolute left-0 top-0 -ml-8 flex pr-2 pt-4 sm:-ml-10 sm:pr-4">
+                        <button type="button" class="relative rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white">
+                          <span class="absolute -inset-2.5"></span>
+                          <span class="sr-only">Close panel</span>
+                          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                          </svg>
+                        </button>
+                      </div>
+
+                      <div class="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
+                        <div class="px-4 sm:px-6">
+                          <h2 class="text-base font-semibold leading-6 text-gray-900" id="slide-over-title">Panel title</h2>
+                        </div>
+                        <div class="relative mt-6 flex-1 px-4 sm:px-6">
+                          <!-- Your content -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <button class="text-base px-4 py-1 bg-red-600 font-normal leading-6 text-white rounded-lg hover:bg-red-700 transition duration-300"  onclick="openLogoutModal()">Log out</button>
             
             <!-- Logout Confirmation Modal -->
@@ -50,7 +86,7 @@
                     <p class="text-gray-600">Are you sure you want to log out?</p>
                     <div class="mt-4 flex justify-end">
                         <a href="{% url 'authentication:logout' %}" onclick="confirmLogout()" class="bg-red-600 hover:bg-red-700 text-white text-[14px] px-4 py-1.5 rounded-lg">Yes</a>
-                        <button onclick="closeLogoutModal()" class="bg-gray-400 hover:bg-gray-500 text-white text-[14px] px-4 py-1.5 rounded-lg ml-2">Cancel</button>
+                        <button onclick="closeLogoutModal()" class="bg-gray-400 hover:bg-gray-500 text-white text-[14px] px-5 py-1.5 rounded-lg ml-2">No</button>
                     </div>
                 </div>
             </div>
@@ -68,7 +104,7 @@
                 function confirmLogout() {
                     // Redirect to the actual logout URL
                     window.location.href = "{% url 'authentication:logout' %}";
-                }
+                }1
             </script>
           {% else %}
             <a href="{% url 'authentication:login' %}" class="text-base px-4 py-1 bg-green-500 font-normal leading-6 text-white rounded-lg hover:bg-green-600 transition duration-300">Log in</a>

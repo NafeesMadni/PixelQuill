@@ -52,11 +52,7 @@
 		{% for blog in blogs %}
 			<div class="border p-1.5 rounded-md">
 				<a href="{% url 'details' blog.id %}">
-				<img
-					src="{{blog.image.url}}"
-					alt="{{blog.name}}"
-					class="rounded-md w-full h-48 shadow-lg object-cover object-center"
-				/>
+				<img src="{{blog.image.url}}" alt="{{blog.name}}" class="rounded-md w-full h-48 shadow-lg object-cover object-center"/>
 				<div class="mx-3 my-6">
 					<a href="{% url 'category' blog.category.id %}" class="rounded-lg text-xs font-semibold {{ blog.category | get_btn_col:btn_cols }} text-white py-1 px-2"> {{ blog.category }}</a>
 						<div class="bg-white rounded-b-md mt-2">
