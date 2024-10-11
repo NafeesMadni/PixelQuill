@@ -4,176 +4,183 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> {% block title %} {% endblock %} | Pixel Quill</title>
-    {% tailwind_css %}
-  </head>
-  <body class="font-inter">
-    <header class=" bg-white border border-b-gray-400 text-gray-900 mb-3">
-      <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 lg:px-8 " aria-label="Global">
-        <div class="flex lg:flex-1">
-          <a href="{% url 'home' %}" class="-m-1.5 p-1.5">
-            <span class="sr-only">Company Logo</span>
-            <div class="sr-only">
-              <span class="bg-rose-500">default color</span>
-              <span class="bg-cyan-500">default color</span>
-              <span class="bg-yellow-500">default color</span>
-              <span class="bg-teal-500">default color</span>
-              <span class="bg-indigo-500">default color</span>
-              <span class="bg-green-500">default color</span>
-              <span class="bg-blue-500">default color</span>
-            </div>
-            <h3 class="inline-block font-serif text-2xl font-thin text-gray-800">Pixel <span class="font-semibold">Quill</span></h3>
-          </a>
-        </div>
-        
-        <div class="flex justify-center gap-x-7">
-          <a href="{% url 'home' %}" class="text-base font-normal leading-6 bg-transparent  hover:border-b hover:border-gray-900 transition duration-300">Home</a>
-          <a href="{% url 'post' %}" class="text-base font-normal leading-6 bg-transparent hover:border-b hover:border-gray-900 transition duration-300">Post</a>
-          <a href="#" class="text-base font-normal leading-6 bg-transparent hover:border-b hover:border-gray-900 transition duration-300">About</a>
-          <a href="#" class="text-base font-normal leading-6 bg-transparent hover:border-b hover:border-gray-900 transition duration-300">Contact </a>
-          
-          {% comment %} <a href="{% url 'home' %}" class="text-sm font-normal leading-6 bg-transparent text-gray-950 px-4 py-1 rounded hover:bg-gray-800 hover:text-white transition duration-300">Contact</a> {% endcomment %}
-          {% comment %} <a href="{% url 'home' %}" class="text-sm font-semibold leading-6 text-gray-800 hover:text-gray-950">Home</a> {% endcomment %}
-          
-        </div>
-        <div class="hidden lg:flex lg:flex-1 lg:justify-end gap-4">
-        {% if request.user.is_authenticated %}
-            <div class="hidden relative z-10" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
-              
-              <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title> {% block title %} {% endblock %} | Pixel Quill</title>
+{% tailwind_css %}
+</head>
+<body class="font-inter">
+<header class=" bg-white border border-b-gray-400 text-gray-900 mb-3">
+	<nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 lg:px-8 " aria-label="Global">
+	<div class="flex lg:flex-1">
+		<a href="{% url 'home' %}" class="-m-1.5 p-1.5">
+		<span class="sr-only">Company Logo</span>
+		<div class="sr-only">
+		<span class="bg-rose-500">default color</span>
+		<span class="bg-cyan-500">default color</span>
+		<span class="bg-yellow-500">default color</span>
+		<span class="bg-teal-500">default color</span>
+		<span class="bg-indigo-500">default color</span>
+		<span class="bg-green-500">default color</span>
+		<span class="bg-blue-500">default color</span>
+		</div>
+		<h3 class="inline-block font-serif text-2xl font-thin text-gray-800">Pixel <span class="font-semibold">Quill</span></h3>
+		</a>
+	</div>
+	
+	<div class="flex justify-center gap-x-7">
+		<a href="{% url 'home' %}" class="text-base font-normal leading-6 bg-transparent  hover:border-b hover:border-gray-900 transition duration-300">Home</a>
+		<a href="{% url 'post' %}" class="text-base font-normal leading-6 bg-transparent hover:border-b hover:border-gray-900 transition duration-300">Post</a>
+		<a href="#" class="text-base font-normal leading-6 bg-transparent hover:border-b hover:border-gray-900 transition duration-300">About</a>
+		<a href="#" class="text-base font-normal leading-6 bg-transparent hover:border-b hover:border-gray-900 transition duration-300">Contact </a>
+		
+		{% comment %} <a href="{% url 'home' %}" class="text-sm font-normal leading-6 bg-transparent text-gray-950 px-4 py-1 rounded hover:bg-gray-800 hover:text-white transition duration-300">Contact</a> {% endcomment %}
+		{% comment %} <a href="{% url 'home' %}" class="text-sm font-semibold leading-6 text-gray-800 hover:text-gray-950">Home</a> {% endcomment %}
+		
+	</div>
+	<div class="hidden lg:flex lg:flex-1 lg:justify-end gap-4">
+	{% if request.user.is_authenticated %}
+		<button class=""> 
+		<div class="flex space-x-6 justify-center">
+			<div class="flex-shrink-0 w-12 h-12 rounded-full overflow-hidden">
+			{% comment %} <img src="{{ profile.profile_img }}" /> {% endcomment %}
+			</div>
+		</div>
+		</button>
+		<div class="hidden relative z-10" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+		
+		<div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
 
-              <div class="fixed inset-0 overflow-hidden">
+		<div class="fixed inset-0 overflow-hidden">
 
-                <div class="absolute inset-0 overflow-hidden">
-                  
-                  <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
-                    
-                    <div class="pointer-events-auto relative w-screen max-w-md">
-                    
-                      <div class="absolute left-0 top-0 -ml-8 flex pr-2 pt-4 sm:-ml-10 sm:pr-4">
-                        <button type="button" class="relative rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white">
-                          <span class="absolute -inset-2.5"></span>
-                          <span class="sr-only">Close panel</span>
-                          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                          </svg>
-                        </button>
-                      </div>
+			<div class="absolute inset-0 overflow-hidden">
+			
+			<div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+				
+				<div class="pointer-events-auto relative w-screen max-w-md">
+				
+				<div class="absolute left-0 top-0 -ml-8 flex pr-2 pt-4 sm:-ml-10 sm:pr-4">
+				<button onclick="closeDrawer()" type="button" class="relative rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white">
+					<span class="absolute -inset-2.5"></span>
+					<span class="sr-only">Close panel</span>
+					<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+					</svg>
+				</button>
+				</div>
 
-                      <div class="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
-                        <div class="px-4 sm:px-6">
-                          <h2 class="text-base font-semibold leading-6 text-gray-900" id="slide-over-title">Panel title</h2>
-                        </div>
-                        <div class="relative mt-6 flex-1 px-4 sm:px-6">
-                          <!-- Your content -->
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+				<div class="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
+				<div class="px-4 sm:px-6">
+					<h2 class="text-base font-semibold leading-6 text-gray-900" id="slide-over-title">Panel title</h2>
+				</div>
+				<div class="relative mt-6 flex-1 px-4 sm:px-6">
+					<!-- Your content -->
+				</div>
+				</div>
+				</div>
+			</div>
+			</div>
+		</div>
+		</div>
 
-            <button class="text-base px-4 py-1 bg-red-600 font-normal leading-6 text-white rounded-lg hover:bg-red-700 transition duration-300"  onclick="openLogoutModal()">Log out</button>
-            
-            <!-- Logout Confirmation Modal -->
-            <div id="logoutModal" class="hidden flex fixed z-50 inset-0 bg-gray-800 bg-opacity-75 items-center justify-center">
-                <div class="bg-white rounded-lg shadow-lg p-6">
-                    <h2 class="text-lg font-semibold">Confirm Logout</h2>
-                    <p class="text-gray-600">Are you sure you want to log out?</p>
-                    <div class="mt-4 flex justify-end">
-                        <a href="{% url 'authentication:logout' %}" onclick="confirmLogout()" class="bg-red-600 hover:bg-red-700 text-white text-[14px] px-4 py-1.5 rounded-lg">Yes</a>
-                        <button onclick="closeLogoutModal()" class="bg-gray-400 hover:bg-gray-500 text-white text-[14px] px-5 py-1.5 rounded-lg ml-2">No</button>
-                    </div>
-                </div>
-            </div>
+		<button class="text-base px-4 py-1 bg-red-600 font-normal leading-6 text-white rounded-lg hover:bg-red-700 transition duration-300"  onclick="openLogoutModal()">Log out</button>
+		
+		<!-- Logout Confirmation Modal -->
+		<div id="logoutModal" class="hidden flex fixed z-50 inset-0 bg-gray-800 bg-opacity-75 items-center justify-center">
+			<div class="bg-white rounded-lg shadow-lg p-6">
+				<h2 class="text-lg font-semibold">Confirm Logout</h2>
+				<p class="text-gray-600">Are you sure you want to log out?</p>
+				<div class="mt-4 flex justify-end">
+				<a href="{% url 'authentication:logout' %}" onclick="confirmLogout()" class="bg-red-600 hover:bg-red-700 text-white text-[14px] px-4 py-1.5 rounded-lg">Yes</a>
+				<button onclick="closeLogoutModal()" class="bg-gray-400 hover:bg-gray-500 text-white text-[14px] px-5 py-1.5 rounded-lg ml-2">No</button>
+				</div>
+			</div>
+		</div>
 
-            <!-- JavaScript to Control Modal -->
-            <script>
-                function openLogoutModal() {
-                    document.getElementById('logoutModal').classList.remove('hidden');
-                }
+		<!-- JavaScript to Control Modal -->
+		<script>
+			function openLogoutModal() {
+				document.getElementById('logoutModal').classList.remove('hidden');
+			}
 
-                function closeLogoutModal() {
-                    document.getElementById('logoutModal').classList.add('hidden');
-                }
+			function closeLogoutModal() {
+				document.getElementById('logoutModal').classList.add('hidden');
+			}
 
-                function confirmLogout() {
-                    // Redirect to the actual logout URL
-                    window.location.href = "{% url 'authentication:logout' %}";
-                }1
-            </script>
-          {% else %}
-            <a href="{% url 'authentication:login' %}" class="text-base px-4 py-1 bg-green-500 font-normal leading-6 text-white rounded-lg hover:bg-green-600 transition duration-300">Log in</a>
-          {% endif %}
-        </div>
-      </nav>
-      <!-- Mobile menu, show/hide based on menu open state. -->
-    </header>
-  
-    
-    {% block content %}   {% endblock %}
+			function confirmLogout() {
+				// Redirect to the actual logout URL
+				window.location.href = "{% url 'authentication:logout' %}";
+			}1
+		</script>
+		{% else %}
+		<a href="{% url 'authentication:login' %}" class="text-base px-4 py-1 bg-green-500 font-normal leading-6 text-white rounded-lg hover:bg-green-600 transition duration-300">Log in</a>
+		{% endif %}
+	</div>
+	</nav>
+	<!-- Mobile menu, show/hide based on menu open state. -->
+</header>
 
-    <footer class="bg-gray-100 text-black py-6">
-      <div class="container mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
-          <div class="col-span-1 text-gray-800">
-            <h3 class="text-2xl mb-5  font-semibold">About</h3>
-            <p class="text-xs mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-            <p class="text-sm mb-2"><span class="font-semibold">Email:</span> codenafees@gmail.com</p>
-            <p class="text-sm mb-2"><span class="font-semibold">Phone:</span> +92 123-456789</p>
-          </div>
-          <div class="col-span-1 text-gray-800">
-            <h3 class="text-2xl mb-5 font-semibold">Quick Links</h3>
-            <ul>
-              <li class="mb-2"><a href="{% url 'home' %}" class="mb-2 border-transparent hover:border-b hover:border-gray-800 transition duration-300">Home</a></li>
-              <li class="mb-2"><a href="#" class="mb-2 border-transparent hover:border-b hover:border-gray-800 transition duration-300">About</a></li>
-              <li class="mb-2"><a href="#" class="mb-2 border-transparent hover:border-b hover:border-gray-800 transition duration-300">Author</a></li>
-              <li class="mb-2"><a href="#" class="mb-2 border-transparent hover:border-b hover:border-gray-800 transition duration-300">Contact</a></li>
-            </ul>
-          </div>
-          <div class="col-span-1 text-gray-800">
-            <h3 class="text-2xl mb-5  font-semibold">Categories</h3>
-            <ul>
-                {% for category in categories %}
-                  <li class="mb-1"><a href="{% url 'category' category.id %}" class="font-base mb-3 border-transparent hover:border-b hover:border-gray-800 transition duration-300">{{ category.name }}</a></li>
-                {% endfor %}
-            </ul>
-            
-          </div>
-          <div class="col-span-1">
-            <div class="container mx-auto py-6">
-              <div class="max-w-md mx-auto bg-white rounded-lg shadow-md p-6 items-center">
-                <h2 class="text-lg font-semibold mb-4 text-gray-900 text-center">Weekly Newsletter</h2>
-                <p class="text-xs text-gray-600 mb-4">Get blog articles and offers via email</p>
-                <form action="#" method="POST">
-                  <div class="items-center mb-4">
-                    <input type="email" name="email" id="email" class="text-gray-800 text-xs w-full px-4 py-1 mb-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500" placeholder="Your Email"> 
-                    <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white text-xs py-1 px-4 rounded-md">Subscribe</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="mt-8 flex justify-between items-center">
-          <a href="#" class="flex items-center">
-            {% comment %} <img src="path/to/your/logo.png" alt="Logo" class="h-8"> {% endcomment %}
-            <h3 class="inline-block font-serif text-2xl font-thin"> Pixel <span class="font-semibold ">Quill</span></h3>
-          
-          </a>
-          <p class="text-sm font-normal text-gray-800">&copy; Pixel Quill 2024, All Rights Reserved.</p>
-          <nav class="flex space-x-4">
-            <a href="#" class="text-sm font-normal border-transparent hover:border-b hover:border-black transition duration-300">Terms of Use</a>
-            <a href="#" class="text-sm font-normal border-transparent hover:border-b hover:border-black transition duration-300">Privacy Policy</a>
-            <a href="#" class="text-sm font-normal border-transparent hover:border-b hover:border-black transition duration-300">Cookie Policy</a>
-          </nav>
-        </div>
-      </div>
-    </footer>
-    
-  </body>
+
+{% block content %}   {% endblock %}
+
+<footer class="bg-gray-100 text-black py-6">
+	<div class="container mx-auto">
+	<div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+		<div class="col-span-1 text-gray-800">
+		<h3 class="text-2xl mb-5  font-semibold">About</h3>
+		<p class="text-xs mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+		<p class="text-sm mb-2"><span class="font-semibold">Email:</span> codenafees@gmail.com</p>
+		<p class="text-sm mb-2"><span class="font-semibold">Phone:</span> +92 123-456789</p>
+		</div>
+		<div class="col-span-1 text-gray-800">
+		<h3 class="text-2xl mb-5 font-semibold">Quick Links</h3>
+		<ul>
+		<li class="mb-2"><a href="{% url 'home' %}" class="mb-2 border-transparent hover:border-b hover:border-gray-800 transition duration-300">Home</a></li>
+		<li class="mb-2"><a href="#" class="mb-2 border-transparent hover:border-b hover:border-gray-800 transition duration-300">About</a></li>
+		<li class="mb-2"><a href="#" class="mb-2 border-transparent hover:border-b hover:border-gray-800 transition duration-300">Author</a></li>
+		<li class="mb-2"><a href="#" class="mb-2 border-transparent hover:border-b hover:border-gray-800 transition duration-300">Contact</a></li>
+		</ul>
+		</div>
+		<div class="col-span-1 text-gray-800">
+		<h3 class="text-2xl mb-5  font-semibold">Categories</h3>
+		<ul>
+			{% for category in categories %}
+			<li class="mb-1"><a href="{% url 'category' category.id %}" class="font-base mb-3 border-transparent hover:border-b hover:border-gray-800 transition duration-300">{{ category.name }}</a></li>
+			{% endfor %}
+		</ul>
+		
+		</div>
+		<div class="col-span-1">
+		<div class="container mx-auto py-6">
+		<div class="max-w-md mx-auto bg-white rounded-lg shadow-md p-6 items-center">
+			<h2 class="text-lg font-semibold mb-4 text-gray-900 text-center">Weekly Newsletter</h2>
+			<p class="text-xs text-gray-600 mb-4">Get blog articles and offers via email</p>
+			<form action="#" method="POST">
+			<div class="items-center mb-4">
+				<input type="email" name="email" id="email" class="text-gray-800 text-xs w-full px-4 py-1 mb-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500" placeholder="Your Email"> 
+				<button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white text-xs py-1 px-4 rounded-md">Subscribe</button>
+			</div>
+			</form>
+		</div>
+		</div>
+		</div>
+	</div>
+	<div class="mt-8 flex justify-between items-center">
+		<a href="#" class="flex items-center">
+		{% comment %} <img src="path/to/your/logo.png" alt="Logo" class="h-8"> {% endcomment %}
+		<h3 class="inline-block font-serif text-2xl font-thin"> Pixel <span class="font-semibold ">Quill</span></h3>
+		
+		</a>
+		<p class="text-sm font-normal text-gray-800">&copy; Pixel Quill 2024, All Rights Reserved.</p>
+		<nav class="flex space-x-4">
+		<a href="#" class="text-sm font-normal border-transparent hover:border-b hover:border-black transition duration-300">Terms of Use</a>
+		<a href="#" class="text-sm font-normal border-transparent hover:border-b hover:border-black transition duration-300">Privacy Policy</a>
+		<a href="#" class="text-sm font-normal border-transparent hover:border-b hover:border-black transition duration-300">Cookie Policy</a>
+		</nav>
+	</div>
+	</div>
+</footer>
+
+</body>
 </html>

@@ -36,42 +36,40 @@ btn_cols = {
 }
 
 def home(request):
+     # profile = Profile.objects.get(user=request.user.id)
+     
      categories = Category.objects.all()
      blogs = Blog.objects.all()
-     # profile = Profile.objects.get(fk=request.user.id)
-     for profile in Profile.objects.all():
-          
-          print(profile.pk)
      
-     # profile = get_object_or_404(Profile, )
      return render(request, 'core/home.html', 
      {
           'blogs': blogs, 
           'categories': categories, 
           'btn_cols': btn_cols,
-          'profile': Profile,
+          # 'profile': profile,
      }) # indirectly passing the list of category to layout.html
 
 
 def details(request, pk):
+     # profile = Profile.objects.get(user=request.user.id)
      categories = Category.objects.all()
      blog = get_object_or_404(Blog, pk=pk)
      btn_col = btn_cols[str(blog.category)]
-     
 
      return render(request, 'core/details.html',
      {
           'blog': blog,
           'categories': categories,
           'btn_col': btn_col,
-          'profile': Profile,
+          # 'profile': profile,
      })
 
 def category(request, pk):
+     # profile = Profile.objects.get(user=request.user.id)
+     
      categories = Category.objects.all()
      category = Category.objects.get(id=pk)
      related_blogs = category.category_blogs.all()  
-     
      btn_col = btn_cols[str(category)]
      
      image = category_imgs[str(category)]
@@ -85,23 +83,24 @@ def category(request, pk):
           'btn_col':btn_col,
           'category': category,
           'image_url': image_url,
-          'profile': Profile,
+          # 'profile': profile,
      })
 
 
 
 def author(request, pk):
+     # profile = profile.objects.get(user=request.user.id)
      categories = Category.objects.all()
      author = User.objects.get(id=pk)
-     related_blogs = author.author_blogs.all() 
-     print(author)
+     related_blogs = author.author_blogs.all()
+     
      return render(request, 'core/author.html', 
      {
           'related_blogs': related_blogs,
           'categories': categories, # pass to layout.html
           'btn_cols': btn_cols,
           'author': author,
-          'profile': Profile,
+          # 'profile': profile,
      })
 
 

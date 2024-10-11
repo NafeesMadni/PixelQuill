@@ -8,7 +8,7 @@ class Profile(models.Model):
      f_name = models.CharField(max_length=10, default='James')
      l_name = models.CharField(max_length=10, default='Joe')
      job_role = models.CharField(max_length=10, default='_job')
-     profile_img = models.ImageField(upload_to='profiles/', default="img/dp.jpg")
+     profile_img = models.ImageField(upload_to='dp_img/', default="img/dp.jpg")
      bio = models.TextField(max_length=400, blank=True)
      acc_created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
      
