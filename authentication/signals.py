@@ -10,10 +10,4 @@ def create_user_profile(sender, instance, created, **kwargs):
         if created:
             # Create profile for new regular user
             Profile.objects.create(user=instance)
-        # else:
-        #     # Try to save profile if the user exists
-        #     try:
-        #         instance.profile.save()
-        #     except Profile.DoesNotExist:
-        #         # Handle case where profile doesn't exist (just in case)
-        #         Profile.objects.create(user=instance)
+        
