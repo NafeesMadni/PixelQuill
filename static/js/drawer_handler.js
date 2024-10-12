@@ -3,5 +3,5 @@ function openDrawerModal() {
 }
 
 function closeDrawerModal() {
-     document.getElementById('drawerModel').classList.add('hidden');
+     document.getElementById('drawerModal').classList.add('hidden');
 }

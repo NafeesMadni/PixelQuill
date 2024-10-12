@@ -4,42 +4,50 @@ from django.utils import timezone
 from django.templatetags.static import static
 from django.contrib.auth.models import User
 from authentication.models import Profile
+from pixelquill.utils import btn_cols, category_imgs, categories, getUserProfile
+# btn_text_cols = {
+#      "Fashion": " bg-rose-100/95 text-rose-500 ",
+#      "Technology": " bg-blue-100/95 text-blue-500 ",
+#      "Economy": " bg-green-100/95 text-green-500 ",
+#      "Business": " bg-indigo-100/95 text-indigo-500 ",
+#      "Travel": " bg-teal-100/95 text-teal-600 ",
+#      "Lifestyle": " bg-yellow-100/95 text-yellow-500 ",
+#      "Sports": " bg-cyan-100/95 text-cyan-500 ", 
+# }
 
-btn_text_cols = {
-     "Fashion": " bg-rose-100/95 text-rose-500 ",
-     "Technology": " bg-blue-100/95 text-blue-500 ",
-     "Economy": " bg-green-100/95 text-green-500 ",
-     "Business": " bg-indigo-100/95 text-indigo-500 ",
-     "Travel": " bg-teal-100/95 text-teal-600 ",
-     "Lifestyle": " bg-yellow-100/95 text-yellow-500 ",
-     "Sports": " bg-cyan-100/95 text-cyan-500 ", 
-}
+# category_imgs = {
+#      "Fashion": "img/categories/fashion.jpg",
+#      "Technology": "img/categories/technology.jpg",
+#      "Economy": "img/categories/economy.jpg",
+#      "Business": "img/categories/business.jpg",
+#      "Travel": "img/categories/travel.jpg",
+#      "Lifestyle": "img/categories/lifestyle.jpg",
+#      "Sports": "img/categories/sports.jpg", 
+# }
 
-category_imgs = {
-     "Fashion": "img/categories/fashion.jpg",
-     "Technology": "img/categories/technology.jpg",
-     "Economy": "img/categories/economy.jpg",
-     "Business": "img/categories/business.jpg",
-     "Travel": "img/categories/travel.jpg",
-     "Lifestyle": "img/categories/lifestyle.jpg",
-     "Sports": "img/categories/sports.jpg", 
-}
+# btn_cols = {
+#      "Fashion": " bg-rose-500 ",
+#      "Technology": " bg-blue-500 ",
+#      "Economy": " bg-green-500 ",
+#      "Business": " bg-indigo-500 ",
+#      "Travel": " bg-teal-500 ",
+#      "Lifestyle": " bg-yellow-500 ",
+#      "Sports": " bg-cyan-500 ", 
+# }
 
-btn_cols = {
-     "Fashion": " bg-rose-500 ",
-     "Technology": " bg-blue-500 ",
-     "Economy": " bg-green-500 ",
-     "Business": " bg-indigo-500 ",
-     "Travel": " bg-teal-500 ",
-     "Lifestyle": " bg-yellow-500 ",
-     "Sports": " bg-cyan-500 ", 
-}
+# def getUserProfile(request):
+#      # if there is no user login or login user is a admin
+#      if not request.user.is_authenticated or request.user.is_superuser or request.user.is_staff:
+#           profile = None
+#      else:
+#           user = User.objects.get(pk=request.user.pk)
+#           profile = user.profile
+#      print(profile)
+#      return profile
 
 def home(request):
-     if not request.user.is_superuser:
-          profile = request.user.user_data
+     profile = getUserProfile(request=request)
      
-     categories = Category.objects.all()
      blogs = Blog.objects.all()
      
      return render(request, 'core/home.html', 
@@ -52,8 +60,8 @@ def home(request):
 
 
 def details(request, pk):
-     # profile = Profile.objects.get(user=request.user.id)
-     categories = Category.objects.all()
+     profile = getUserProfile(request=request)
+     
      blog = get_object_or_404(Blog, pk=pk)
      btn_col = btn_cols[str(blog.category)]
 
@@ -62,13 +70,12 @@ def details(request, pk):
           'blog': blog,
           'categories': categories,
           'btn_col': btn_col,
-          # 'profile': profile,
+          'profile': profile,
      })
 
 def category(request, pk):
-     # profile = Profile.objects.get(user=request.user.id)
+     profile = getUserProfile(request=request)
      
-     categories = Category.objects.all()
      category = Category.objects.get(id=pk)
      related_blogs = category.category_blogs.all()  
      btn_col = btn_cols[str(category)]
@@ -84,14 +91,14 @@ def category(request, pk):
           'btn_col':btn_col,
           'category': category,
           'image_url': image_url,
-          # 'profile': profile,
+          'profile': profile,
      })
 
 
 
 def author(request, pk):
-     # profile = profile.objects.get(user=request.user.id)
-     categories = Category.objects.all()
+     profile = getUserProfile(request=request)
+     
      author = User.objects.get(id=pk)
      related_blogs = author.author_blogs.all()
      
@@ -101,7 +108,5 @@ def author(request, pk):
           'categories': categories, # pass to layout.html
           'btn_cols': btn_cols,
           'author': author,
-          # 'profile': profile,
+          'profile': profile,
      })
-
-

@@ -3,11 +3,13 @@ from .forms import BlogForm
 from django.contrib.auth.models import User
 from core.models import Blog, Category
 from django.contrib.auth.decorators import login_required
+from pixelquill.utils import getUserProfile, categories
 
 # Create your views here.
 @login_required
 def post(request):
-     categories = Category.objects.all() # passing to layout.html
+     profile = getUserProfile(request=request)
+     
      if request.method == 'POST':
           form = BlogForm(request.POST, request.FILES) # request.FILES to get the files (images) user upload 
           if form.is_valid():
@@ -17,11 +19,17 @@ def post(request):
                return redirect('details', pk=post.id)
      else :
           form = BlogForm()
-     return render(request, 'blogs/post.html', {'form':form, 'title': 'Create a new blog', 'categories': categories,})
+     return render(request, 'blogs/post.html', {
+          'form':form, 
+          'title': 'Create a new blog', 
+          'categories': categories,
+          'profile': profile,
+          })
 
 @login_required
 def edit(request, pk):
-     categories = Category.objects.all() 
+     profile = getUserProfile(request=request)
+     
      blog = get_object_or_404(Blog, pk=pk, created_by=request.user)
      
      if request.method == 'POST':
@@ -31,7 +39,12 @@ def edit(request, pk):
                return redirect('details', pk=blog.id)
      else:
           form = BlogForm(instance=blog)
-     return render(request, 'blogs/post.html', {'form':form, 'title': 'Edit blog', 'categories': categories,})
+     return render(request, 'blogs/post.html', {
+          'form':form,
+          'title': 'Edit blog',
+          'categories': categories,
+          'profile': profile,
+          })
 
 
 @login_required
