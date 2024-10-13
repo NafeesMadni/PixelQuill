@@ -67,7 +67,7 @@ def category(request, pk):
 def author(request, pk):
      profile = getUserProfile(request=request)
      
-     author = User.objects.prefetch_related('profile').prefetch_related('author_blogs').get(id=pk)
+     author = User.objects.prefetch_related('profile', 'author_blogs').get(id=pk)
      related_blogs = author.author_blogs.all()
      author_data = author.profile
      
@@ -80,3 +80,4 @@ def author(request, pk):
           'profile': profile,
           'author_data': author_data,
      })
+     

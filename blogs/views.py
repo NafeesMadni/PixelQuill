@@ -39,12 +39,13 @@ def edit(request, pk):
                return redirect('details', pk=blog.id)
      else:
           form = BlogForm(instance=blog)
-     return render(request, 'blogs/post.html', {
+     return render(request, 'blogs/post.html', 
+     {
           'form':form,
           'title': 'Edit blog',
           'categories': categories,
           'profile': profile,
-          })
+     })
 
 
 @login_required

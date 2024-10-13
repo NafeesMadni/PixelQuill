@@ -44,5 +44,4 @@ def getUserProfile(request):
      else:
           user = User.objects.prefetch_related('profile').get(pk=request.user.pk)
           profile = user.profile
-     print(profile)
      return profile

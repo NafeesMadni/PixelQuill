@@ -27,10 +27,12 @@
           <h1 class="my-5 text-3xl font-semibold font-serif">{{ blog.heading }}</h1>
           <div class="flex items-center space-x-3 my-3">
                <!-- Avatar -->
-               <div class=" w-10 h-10 rounded-full overflow-hidden">
-                    <img src="{{ blogger_data.profile_img.url }}"/>
-               </div>
-               <!-- Details -->>
+               <a href="{% url 'author' blog.created_by.id %}">
+                    <div class=" w-10 h-10 rounded-full overflow-hidden">
+                         <img src="{{ blogger_data.profile_img.url }}"/>
+                    </div>
+               </a>
+               <!-- Details -->
                <div class="flex items-center space-x-2 gap-10">
                     <span class="text-sm text-gray-600 font-medium">{{ blog.created_by }}</span>
                     <span class="text-gray-400 text-xs">{{ blog.added_date | get_formated_date }}</span>
