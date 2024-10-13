@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from authentication.models import Profile
 from core.models import Category
 
-categories = Category.objects.all()
+categories = Category.objects.prefetch_related('category_blogs').all()
 
 # btn_text_cols = {
 #      "Fashion": " bg-rose-100/95 text-rose-500 ",
@@ -36,10 +36,13 @@ btn_cols = {
 
 def getUserProfile(request):
      # if there is no user login or login user is a admin
-     if not request.user.is_authenticated or request.user.is_superuser or request.user.is_staff:
+     if not request.user.is_authenticated :
+          profile = None
+          return profile
+     if request.user.is_superuser or request.user.is_staff:
           profile = None
      else:
-          user = User.objects.get(pk=request.user.pk)
+          user = User.objects.prefetch_related('profile').get(pk=request.user.pk)
           profile = user.profile
      print(profile)
      return profile

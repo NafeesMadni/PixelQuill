@@ -14,8 +14,8 @@
 		<div class="mx-[200px] py-3">
 			<!-- Avatar -->
 			<div class="flex space-x-6 justify-center">
-				<div class="flex-shrink-0 w-12 h-12 rounded-full overflow-hidden"> {% load static %}
-					<img src="{% static 'img/dp.jpg' %}" />
+				<div class=" w-12 h-12 rounded-full overflow-hidden">
+					<img src="{{ author_data.profile_img.url }}"/>
 				</div>
 
 				<!-- Name and Profession -->
@@ -78,20 +78,20 @@
 								<h3 class="text-gray-950 text-lg font-semibold"> {{ blog.heading }} </h3>
 							</div>
 						</div>
-						<div class="flex items-center space-x-3 my-3">
-							<!-- Avatar -->
-							<div class="w-8 h-8 rounded-full items-center justify-center">
-								<a href="{% url 'author' blog.created_by.id %}" class="m-0" >
-									<svg class="text-gray-500 " fill="currentColor" viewBox="0 0 24 24">
-										<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
-									</svg>
-								</a>
+						<div class="flex items-center justify-between grids grid-cols-3 space-x-3 my-3">
+							<div class="flex space-x-3">
+								<!-- Avatar --> 
+								<div class=" w-9 h-9 rounded-full overflow-hidden grid-rows-2">
+									<img src="{{ author_data.profile_img.url }}"/>
+								</div>
+								<!-- Name and Date -->
+								<div class="items-center justify-center">
+									<span class=" text-gray-700 text-[14px] block font-medium">{{ author_data.f_name }} {{author_data.l_name}}</span>
+									<span class="text-gray-500 text-[12px] block">@{{ blog.created_by }}</span>
+								</div>
 							</div>
-							<!-- Name and Date -->
-							<div class="flex items-center space-x-2 gap-10">
-								<span class="text-sm text-gray-600 font-medium">{{ blog.created_by }}</span>
-								<span class="text-gray-400 text-xs">{{ blog.added_date | get_formated_date }}</span>
-							</div>
+							<span class="text-gray-400 text-xs">{{ blog.added_date | get_formated_date }}</span>
+							
 						</div>
 					</div>
 				</a>
