@@ -4,7 +4,7 @@ from .forms import LogInForm, SignUpForm, ProfileForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
-from pixelquill.utils import getUserProfile
+from pixelquill.utils import getUserProfile, categories
 
 # Create your views here.
 

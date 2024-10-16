@@ -4,7 +4,7 @@ from django.utils import timezone
 from django.templatetags.static import static
 from django.contrib.auth.models import User
 from authentication.models import Profile
-from pixelquill.utils import btn_cols, category_imgs, categories, getUserProfile
+from pixelquill.utils import btn_cols, category_imgs, getUserProfile
 
 
 
@@ -18,7 +18,6 @@ def home(request):
      return render(request, 'core/home.html', 
      {
           'blogs': blogs, 
-          'categories': categories, 
           'btn_cols': btn_cols,
           'profile': profile,
           'profiles': profiles,
@@ -36,7 +35,6 @@ def details(request, pk):
      return render(request, 'core/details.html',
      {
           'blog': blog,
-          'categories': categories,
           'btn_col': btn_col,
           'profile': profile,
           'blogger_data': blogger_data,
@@ -56,7 +54,6 @@ def category(request, pk):
      return render(request, 'core/category.html', 
      {
           'related_blogs': related_blogs,
-          'categories': categories, # pass to layout.html
           'btn_col':btn_col,
           'category': category,
           'image_url': image_url,
@@ -74,7 +71,6 @@ def author(request, pk):
      return render(request, 'core/author.html', 
      {
           'related_blogs': related_blogs,
-          'categories': categories, # pass to layout.html
           'btn_cols': btn_cols,
           'author': author,
           'profile': profile,

@@ -4,16 +4,6 @@ from core.models import Category
 
 categories = Category.objects.prefetch_related('category_blogs').all()
 
-# btn_text_cols = {
-#      "Fashion": " bg-rose-100/95 text-rose-500 ",
-#      "Technology": " bg-blue-100/95 text-blue-500 ",
-#      "Economy": " bg-green-100/95 text-green-500 ",
-#      "Business": " bg-indigo-100/95 text-indigo-500 ",
-#      "Travel": " bg-teal-100/95 text-teal-600 ",
-#      "Lifestyle": " bg-yellow-100/95 text-yellow-500 ",
-#      "Sports": " bg-cyan-100/95 text-cyan-500 ", 
-# }
-
 category_imgs = {
      "Fashion": "img/categories/fashion.jpg",
      "Technology": "img/categories/technology.jpg",
