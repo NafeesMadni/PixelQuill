@@ -1,86 +1,83 @@
-{% extends "core/layout.html" %} 
+{% extends "core/layout.html" %}
 
-{% load custom_filters %} 
+{% load custom_filters %}
 
 {% load static %}
 
-{% block title %} Home {% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block content %}
+<div class="mx-4 sm:mx-8 my-5">
+    <div class="w-full">
+        <!-- Article Preview Container -->
+        <div class="w-full relative">
+            <!-- Background Image -->
+            <div class="aspect-[16/9] sm:aspect-[16/6]">
+                <img src="{% static 'img/home.png' %}" alt="Technology in workplace" class="w-full h-full rounded-lg object-cover object-left-top">
+            </div>
+            
+            <!-- White Overlay Card -->
+            <div class="absolute bottom-0 left-0 right-0 m-4 sm:m-5 md:w-2/3 lg:w-1/2 xl:w-[500px]">
+                <div class="rounded-lg shadow-lg px-4 py-6 sm:px-8 sm:py-8">
+                    <!-- Technology Badge -->
+                    <div class="">
+                        <span class="bg-blue-600 text-white text-xs px-3 py-1 rounded-md">Technology</span>
+                    </div>
 
-<div class="mx-8 my-5">
-	
-	<div class="w-full">
-		<!-- Article Preview Container -->
-		<div class="w-full">
-			<!-- Background Image -->
-			<div class="aspect-[16/6]">
-				<img src="{% static 'img/home.png' %}" alt="Technology in workplace" class="w-full h-[300px] rounded-lg object-cover object-left-top">
-			</div>
-			
-			<!-- White Overlay Card -->
-			<div class="absolute bottom-7 w-[500px] m-5">
-				<div class="bg-white rounded-lg shadow-lg px-8 py-8">
-					<!-- Technology Badge -->
-					<div class="">
-						<span class="bg-blue-600 text-white text-xs px-3 py-1 rounded-md">Technology</span>
-					</div>
+                    <!-- Article Title -->
+                    <h2 class="my-2 text-gray-200 font-semibold text-lg sm:text-xl mb-3 text-wrap">The Impact of Technology on the Workplace: How Technology is Changing</h2>
 
-					<!-- Article Title -->
-					<h2 class="my-2 text-gray-900 font-semibold text-xl mb-3 text-wrap">The Impact of Technology on the Workplace: How Technology is Changing</h2>
+                    <!-- Author Info -->
+                    <div class="flex items-center space-x-4 sm:space-x-6">
+                        <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden"> 
+                            <img src="{% static 'img/dp.jpg' %}" alt="Author" class="w-full h-full object-cover"/>
+                        </div>
 
-					<!-- Author Info -->
-					<div class="flex space-x-6 ">
-						<div class="flex-shrink-0 w-12 h-12 rounded-full overflow-hidden"> 
-							<img src="{% static 'img/dp.jpg' %}" />
-						</div>
+                        <!-- Name and Profession -->
+                        <div class="flex-shrink-0">
+                            <h2 class="text-sm sm:text-base font-semibold text-gray-200 whitespace-nowrap">Admin</h2>
+                            <p class="text-xs text-gray-300 whitespace-nowrap">Developer & Designer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-						<!-- Name and Profession -->
-						<div class="flex-shrink-0">
-							<h2 class="text-base font-semibold text-gray-800 whitespace-nowrap"> Admin </h2>
-							<p class="text-xs text-gray-500 whitespace-nowrap"> Developer & Designer</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <h3 class="font-semibold text-xl mb-3 mt-8">Latest Posts</h3>
 
-	<h3 class="font-semibold text-xl mb-3">Latest Posts</h3>
-
-	<div class="grid grid-cols-3 gap-3 my-5">
-		{% for blog in blogs %}
-			<div class="border p-1.5 rounded-md">
-				<a href="{% url 'details' blog.id %}">
-					<img src="{{blog.image.url}}" alt="{{blog.name}}" class="rounded-md w-full h-48 shadow-lg object-cover object-center"/>
-					<div class="mx-3 my-6">
-						<a href="{% url 'category' blog.category.id %}" class="rounded-lg text-xs font-semibold {{ blog.category | get_btn_col:btn_cols }} text-white py-1 px-2"> {{ blog.category }}</a>
-						<div class="bg-white rounded-b-md mt-2">
-							<div class="flex justify-between blogs-center">
-								<h3 class="text-gray-950 text-lg font-semibold"> {{ blog.heading }} </h3>
-							</div>
-						</div>
-						<div class="flex items-center justify-between grids grid-cols-3 space-x-3 my-3">
-							<div class="flex space-x-3">
-								<!-- Avatar --> 
-								<a href="{% url 'author' blog.created_by.id %}" class="m-0" >
-									<div class=" w-9 h-9 rounded-full overflow-hidden grid-rows-2">
-										<img src="{{ blog.created_by.id | get_user_dp }}"/>
-									</div>
-								</a>
-								<!-- Name and Date -->
-								<div class="items-center justify-center">
-									<span class=" text-gray-700 text-[14px] block font-medium">{{ blog.created_by.id | get_user_full_name}}</span>
-									<span class="text-gray-500 text-[12px] block">@{{ blog.created_by }}</span>
-								</div>
-							</div>
-							<span class="text-gray-400 text-xs">{{ blog.added_date | get_formated_date }}</span>
-							
-						</div>
-					</div>
-				</a>
-			</div>
-		{% endfor %}
-	</div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 my-5">
+        {% for blog in blogs %}
+            <div class="border p-1.5 rounded-md">
+                <a href="{% url 'details' blog.id %}">
+                    <img src="{{blog.image.url}}" alt="{{blog.name}}" class="rounded-md w-full h-48 shadow-lg object-cover object-center"/>
+                    <div class="mx-3 my-6">
+                        <a href="{% url 'category' blog.category.id %}" class="rounded-lg text-xs font-semibold {{ blog.category | get_btn_col:btn_cols }} text-white py-1 px-2">{{ blog.category }}</a>
+                        <div class="bg-white rounded-b-md mt-2">
+                            <div class="flex justify-between items-center">
+                                <h3 class="text-gray-950 text-base sm:text-lg font-semibold">{{ blog.heading }}</h3>
+                            </div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between space-y-2 sm:space-y-0 sm:space-x-3 my-3">
+                            <div class="flex items-center space-x-3">
+                                <!-- Avatar --> 
+                                <a href="{% url 'author' blog.created_by.id %}" class="m-0" >
+                                    <div class="w-9 h-9 rounded-full overflow-hidden">
+                                        <img src="{{ blog.created_by.id | get_user_dp }}" alt="Author" class="w-full h-full object-cover"/>
+                                    </div>
+                                </a>
+                                <!-- Name and Date -->
+                                <div>
+                                    <span class="text-gray-700 text-sm sm:text-[14px] block font-medium">{{ blog.created_by.id | get_user_full_name}}</span>
+                                    <span class="text-gray-500 text-xs sm:text-[12px] block">@{{ blog.created_by }}</span>
+                                </div>
+                            </div>
+                            <span class="text-gray-400 text-xs">{{ blog.added_date | get_formated_date }}</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}

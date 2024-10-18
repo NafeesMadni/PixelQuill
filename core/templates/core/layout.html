@@ -55,7 +55,7 @@
 
 			</div>
 		</button>
-		<div id="drawerModal" class="hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+		<div id="drawerModal" class="hidden z-50" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
 			<div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true">ll
 			</div>
 			<div class="fixed inset-0 overflow-hidden">
@@ -131,63 +131,57 @@
 
 {% block content %}   {% endblock %}
 
-<footer class="bg-gray-100 text-black py-6">
-	<div class="container mx-auto">
-	<div class="grid grid-cols-1 md:grid-cols-4 gap-5">
-		<div class="col-span-1 text-gray-800">
-		<h3 class="text-2xl mb-5  font-semibold">About</h3>
-		<p class="text-xs mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-		<p class="text-sm mb-2"><span class="font-semibold">Email:</span> codenafees@gmail.com</p>
-		<p class="text-sm mb-2"><span class="font-semibold">Phone:</span> +92 123-456789</p>
-		</div>
-		<div class="col-span-1 text-gray-800">
-		<h3 class="text-2xl mb-5 font-semibold">Quick Links</h3>
-		<ul>
-		<li class="mb-2"><a href="{% url 'home' %}" class="mb-2 border-transparent hover:border-b hover:border-gray-800 transition duration-300">Home</a></li>
-		<li class="mb-2"><a href="#" class="mb-2 border-transparent hover:border-b hover:border-gray-800 transition duration-300">About</a></li>
-		<li class="mb-2"><a href="#" class="mb-2 border-transparent hover:border-b hover:border-gray-800 transition duration-300">Author</a></li>
-		<li class="mb-2"><a href="#" class="mb-2 border-transparent hover:border-b hover:border-gray-800 transition duration-300">Contact</a></li>
-		</ul>
-		</div>
-		<div class="col-span-1 text-gray-800">
-		<h3 class="text-2xl mb-5  font-semibold">Categories</h3>
-		<ul>
-			{% for category in categories %}
-			<li class="mb-1"><a href="{% url 'category' category.id %}" class="font-base mb-3 border-transparent hover:border-b hover:border-gray-800 transition duration-300">{{ category.name }}</a></li>
-			{% endfor %}
-		</ul>
-		
-		</div>
-		<div class="col-span-1">
-		<div class="container mx-auto py-6">
-		<div class="max-w-md mx-auto bg-white rounded-lg shadow-md p-6 items-center">
-			<h2 class="text-lg font-semibold mb-4 text-gray-900 text-center">Weekly Newsletter</h2>
-			<p class="text-xs text-gray-600 mb-4">Get blog articles and offers via email</p>
-			<form action="#" method="POST">
-			<div class="items-center mb-4">
-				<input type="email" name="email" id="email" class="text-gray-800 text-xs w-full px-4 py-1 mb-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500" placeholder="Your Email"> 
-				<button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white text-xs py-1 px-4 rounded-md">Subscribe</button>
-			</div>
-			</form>
-		</div>
-		</div>
-		</div>
-	</div>
-	<div class="mt-8 flex justify-between items-center">
-		<a href="#" class="flex items-center">
-		{% comment %} <img src="path/to/your/logo.png" alt="Logo" class="h-8"> {% endcomment %}
-		<h3 class="inline-block font-serif text-2xl font-thin"> Pixel <span class="font-semibold ">Quill</span></h3>
-		
-		</a>
-		<p class="text-sm font-normal text-gray-800">&copy; Pixel Quill 2024, All Rights Reserved.</p>
-		<nav class="flex space-x-4">
-		<a href="#" class="text-sm font-normal border-transparent hover:border-b hover:border-black transition duration-300">Terms of Use</a>
-		<a href="#" class="text-sm font-normal border-transparent hover:border-b hover:border-black transition duration-300">Privacy Policy</a>
-		<a href="#" class="text-sm font-normal border-transparent hover:border-b hover:border-black transition duration-300">Cookie Policy</a>
-		</nav>
-	</div>
-	</div>
-</footer>
-
+    <footer class="bg-gray-100 text-black py-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="col-span-1 text-gray-800">
+                    <h3 class="text-xl mb-4 font-semibold">About</h3>
+                    <p class="text-sm mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+                    <p class="text-sm mb-2"><span class="font-semibold">Email:</span> codenafees@gmail.com</p>
+                    <p class="text-sm mb-2"><span class="font-semibold">Phone:</span> +92 123-456789</p>
+                </div>
+                <div class="col-span-1 text-gray-800">
+                    <h3 class="text-xl mb-4 font-semibold">Quick Links</h3>
+                    <ul>
+                        <li class="mb-2"><a href="{% url 'home' %}" class="text-sm hover:underline">Home</a></li>
+                        <li class="mb-2"><a href="#" class="text-sm hover:underline">About</a></li>
+                        <li class="mb-2"><a href="#" class="text-sm hover:underline">Author</a></li>
+                        <li class="mb-2"><a href="#" class="text-sm hover:underline">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-span-1 text-gray-800">
+                    <h3 class="text-xl mb-4 font-semibold">Categories</h3>
+                    <ul>
+                        {% for category in categories %}
+                        <li class="mb-2"><a href="{% url 'category' category.id %}" class="text-sm hover:underline">{{ category.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-span-1">
+                    <div class="bg-white rounded-lg shadow-md p-4">
+                        <h2 class="text-lg font-semibold mb-4 text-gray-900 text-center">Weekly Newsletter</h2>
+                        <p class="text-xs text-gray-600 mb-4">Get blog articles and offers via email</p>
+                        <form action="#" method="POST">
+                            <div class="space-y-2">
+                                <input type="email" name="email" id="email" class="text-gray-800 text-xs w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500" placeholder="Your Email">
+                                <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white text-sm py-2 px-4 rounded-md">Subscribe</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 flex flex-col md:flex-row justify-between items-center">
+                <a href="#" class="flex items-center mb-4 md:mb-0">
+                    <h3 class="inline-block font-serif text-xl sm:text-2xl font-thin">Pixel <span class="font-semibold">Quill</span></h3>
+                </a>
+                <p class="text-sm font-normal text-gray-800 mb-4 md:mb-0">&copy; Pixel Quill 2024, All Rights Reserved.</p>
+                <nav class="flex flex-wrap justify-center md:justify-end space-x-4">
+                    <a href="#" class="text-sm font-normal hover:underline">Terms of Use</a>
+                    <a href="#" class="text-sm font-normal hover:underline">Privacy Policy</a>
+                    <a href="#" class="text-sm font-normal hover:underline">Cookie Policy</a>
+                </nav>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

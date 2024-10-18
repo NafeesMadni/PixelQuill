@@ -3,27 +3,27 @@
 {% block title %}Profile{% endblock %}
 
 {% block content %}
-     <div class="p-5 w-1/2 mx-auto bg-gray-100 rounded-xl my-14 shadow-lg">
-          <h3 class="text-3xl mt-3 mb-5 text-center font-mono font-semibold text-gray-900">Profile</h3>
+<div class="p-5 w-full sm:w-1/2 mx-auto bg-gray-100 rounded-xl my-14 shadow-lg">
+    <h3 class="text-3xl mt-3 mb-5 text-center font-mono font-semibold text-gray-900">Profile</h3>
 
-          <form method="POST" action="." enctype="multipart/form-data">
-          
-               {% csrf_token %}
-               
-               {{ form.as_p}}
-               
-               {% if form.errors or form.non_field_errors %}
-                    <div class="my-5 text-sm text-red-600">
-                         {% for field in form %}
-                              {{field.errors}}
-                         {% endfor %}
-                         {{form.non_field_errors}}
-                    </div>
-               {% endif %}
-               <div class="justify-end flex gap-x-2">
-                    <a href="{% url 'home' %}" class="px-3 py-1 text-black box-border border border-gray-200 rounded-lg bg-white hover:bg-gray-100">Cancel</a>
-                    <button class="px-5 py-1 text-white box-border rounded-lg bg-blue-500 hover:bg-blue-700">Edit</button>
-               </div>
-          </form>
-     </div>
+    <form method="POST" action="." enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        {% if form.errors or form.non_field_errors %}
+            <div class="my-5 text-sm text-red-600">
+                {% for field in form %}
+                    {{ field.errors }}
+                {% endfor %}
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+        
+        <div class="flex justify-end gap-x-2">
+            <a href="{% url 'home' %}" class="text-[14px] px-3 py-1 text-black box-border border border-gray-200 rounded-lg bg-white hover:bg-gray-100 transition">Cancel</a>
+            <button class="px-5 py-1 text-white text-[14px] box-border rounded-lg bg-blue-500 hover:bg-blue-700 transition">Edit</button>
+        </div>
+    </form>
+</div>
 {% endblock %}
